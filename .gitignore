@@ -1,0 +1,6 @@
+# Ignore Nix store paths
+/nix/
+
+# Ignore Nix-related logs or cache
+/var/log/nixos/
+/var/cache/nix/
