@@ -1,0 +1,81 @@
+// -*- mode: jsonc -*-
+{
+    "position": "bottom", // Waybar position (top|bottom|left|right)
+    "height": 8, // Waybar height (to be removed for auto height)
+    "spacing": 4, // Gaps between modules (4px)
+    "reload_style_on_change": true,
+    "modules-left": [
+    	//"custom/title",
+  	"hyprland/workspaces"
+    ],
+
+    "modules-right": [
+	"network",
+	"temperature",
+	"memory",
+	"pulseaudio",
+	"battery",
+    "clock#clock2",
+	"clock"
+    ],
+    // Modules configuration
+    "hyprland/workspaces": {
+    "format": "{name}",
+    "on-click": "activate",
+    "sort-by-number": true
+    },
+    
+    "clock": {
+        // "timezone": "America/New_York",
+        "interval": 1,
+        "tooltip": false,
+        "format": "{:%I:%M:%S %p}",
+        "on-click": "gsimplecal -t"
+    },
+    "clock#clock2": {
+        // "timezone": "America/New_York",
+        "interval": 1,
+        "tooltip": false,
+        "format": "{:%A %d/%m/%Y}",//"{%A %d/%m/%Y}",
+        "on-click": "gsimplecal -t"
+    },
+    "memory": {
+        "interval": 1,
+        "tooltip": false,
+        "on-click-right": "htop",
+        "format": "RAM {}%"
+    },
+    "temperature": {
+        "interval": 1,
+        "tooltip": false,
+        "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
+        "format": "CPU {temperatureC}°C"
+    },
+    "network": {
+        "interface": "wlp0s20f3", // (Optional) To force the use of this interface
+        "interval": 1,
+        "tooltip": false,
+        "on-click": "/home/pouls0n/.config/waybar/fuzzel-wifi.sh",
+        "format": "{essid} • {signalStrength}%",
+        "format-disconnected": "OFFLINE"
+    },
+    "pulseaudio": {
+        "scroll-step": 5, // %, can be a float 
+        "format": "{volume}%",
+        "format-muted": "m{volume}%",
+        "tooltip": true,
+        "icon-size": 12,
+        "on-click": "pavucontrol"
+    },
+    "battery": {
+        "states": {
+        "good": 95,
+        "warning": 30,
+        "critical": 20
+        },
+        "format-charging": "↑{capacity}%",
+        "format-plugged": "↑{capacity}%",
+        "format-discharging": "↓{capacity}%",
+        "tooltip": true
+    }   
+}
