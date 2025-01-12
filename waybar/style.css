@@ -38,15 +38,13 @@
  * -------------------------------------------------------------------------- */
 
 /* Reset all styles */
-* {
-}
 
 /* The whole bar */
 #waybar {
-    /*background: rgba(0, 0, 0, 0.0); */
+    background: #1d1d1d; 
     color: white;
-    font-family: Dejavu Sans;
-    font-size: 10px;
+    font-family: AnonymicePro Nerd Font Mono;
+    font-size: 12px;
 }
 
 tooltip {
@@ -68,39 +66,38 @@ tooltip label {
 /* Each module */
 label.module,
 #tray {
-    /*background: rgba(50, 50, 50, 0.5);*/
+    background: #1d1d1d;
     color: white;
-    font-family: Dejavu Sans;
-    font-size: 13px;
-    /* border: 1px solid rgba(100, 114, 125, 0.5);*/
-    /* border-radius: 10px;*/
+    font-family: Cozette_hidpi;
+    font-size: 12px;
+    border-radius: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 0 6px;
+   
+
+}
+
+/* right grouping */
+#rightwing {
+    background: #1d1d1d;
+    padding: 0 5px; /* Optional padding for spacing within the container */
+    border-radius: 0; /* Optional: Adjust as needed */
+}
+/* indivudual items in rightwing */
+#rightwing > * {
+    background: rgb(0, 0, 0);
     min-height: 0px;
-    margin-top: -1px;
-    margin-bottom: -1px;
+    margin-top: 0px;
+    margin-bottom: 0px;
     margin-left: 0px;
     margin-right: 0px;
     padding-top: 0px;
     padding-bottom: 0px;
-    padding-left: 6px;
-    padding-right: 6px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
-#pulseaudio {
-    /*background: rgba(50, 50, 50, 0.5);*/
-    color: white;
-    font-family: Dejavu Sans;
-    font-size: 13px;
-    /* border: 1px solid rgba(100, 114, 125, 0.5);*/
-    /* border-radius: 12px;*/
-    min-height: 0px;
-    margin-top: -1px;
-    margin-bottom: -1px;
-    margin-left: 0px;
-    margin-right: 0px;
-    padding-top: 0px;
-    padding-bottom: 0px;
-    padding-left: 6px;
-    padding-right: 6px;
-}
+/* container for the workspaces */
 #workspaces {
     background: rgba(50, 50, 50, 0.5);
     color: white;
@@ -118,7 +115,8 @@ label.module,
     padding-left: 6px;
     padding-right: 6px;
 }
-/*#workspaces button.visible {
+/* workspace indicator */
+#workspaces button.visible {
     background: rgba(50, 50, 50, 0.6);
     color: white;
     font-family: Dejavu Sans;
@@ -135,4 +133,10 @@ label.module,
     padding-left: 5px;
     padding-right: 5px;
 }
-*/
+#network, #temperature, #memory, #pulseaudio, #battery{
+    border-right: 1px solid rgba(100, 114, 125, 0.5);
+    padding-right: 6px;
+    padding-left: 6px;
+}
+/* originel palette */
+/* rgba(100, 114, 125, 0.5); */

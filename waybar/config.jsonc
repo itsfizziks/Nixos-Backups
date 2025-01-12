@@ -5,26 +5,34 @@
     "spacing": 4, // Gaps between modules (4px)
     "reload_style_on_change": true,
     "modules-left": [
-    	//"custom/title",
-  	"hyprland/workspaces"
+  	    "hyprland/workspaces"
     ],
 
     "modules-right": [
-	"network",
-	"temperature",
-	"memory",
-	"pulseaudio",
-	"battery",
-    "clock#clock2",
-	"clock"
-    ],
+        "group/rightwing"     
+	],
+    "group/rightwing":{
+        "type": "custom",
+        "orientation": "horizontal",
+        "modules": [
+            "network",
+            "temperature",
+            "memory",
+            "pulseaudio",
+            "battery",
+            "clock#clock2",
+            "clock"
+         ]
+    },
     // Modules configuration
     "hyprland/workspaces": {
-    "format": "{name}",
-    "on-click": "activate",
-    "sort-by-number": true
+        "format": "{name}",
+        "on-click": "activate",
+        "sort-by-number": true
     },
-    
+    "spacer": {
+        "format":"{testing}"
+    },
     "clock": {
         // "timezone": "America/New_York",
         "interval": 1,
