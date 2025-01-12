@@ -2,52 +2,74 @@
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
   "blocks": [
     {
+      "type": "prompt",
       "alignment": "left",
       "segments": [
         {
-          "foreground": "#777777",
-          "style": "plain",
-          "template": "<#ff2332>\u250f[</>{{ .UserName }}<#ff2332>]</>",
-          "type": "session"
+          "properties": {
+            "cache_duration": "none"
+          },
+          "template": "<#c3c9c8>\uf489 </>{{ .UserName }}<#38474A> </>",
+          "foreground": "#B05A2B",
+          "type": "session",
+          "style": "plain"
         },
         {
-          "foreground": "#ff2332",
-          "style": "plain",
-          "template": "<#ff2332>[</>{{ .HEAD }}<#ff2332>]</>",
-          "type": "git"
-        },
-        {
-          "foreground": "#777777",
-          "style": "plain",
-          "template": "<#777777>[</>\uf0e7<#777777>]</>",
-          "type": "root"
-        },
-        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "template": "{{ if .Venv }}\uf489 {{ .Venv }}{{ end }}",
           "foreground": "#fded02",
-          "style": "plain",
+          "type": "python",
+          "style": "plain"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "template": "<#c3c9c8>[</>{{ .HEAD }}<#c3c9c8>]</>",
+          "foreground": "#38474A",
+          "type": "git",
+          "style": "plain"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "template": "<#c3c9c8>[</>\uf0e7<#c3c9c8>]</>",
+          "foreground": "#38474A",
+          "type": "root",
+          "style": "plain"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
           "template": "<#fded02>[x</>{{ reason .Code }}<#fded02>]</>",
-          "type": "status"
+          "foreground": "#fded02",
+          "type": "status",
+          "style": "plain"
         }
-      ],
-      "type": "prompt"
+      ]
     },
     {
+      "type": "prompt",
       "alignment": "left",
-      "newline": true,
       "segments": [
         {
-          "foreground": "#ff2332",
           "properties": {
+            "cache_duration": "none",
             "style": "full"
           },
-          "style": "plain",
-          "template": "<#ff2332>\u2516[</>{{ .Path }}<#ff2332>]></>",
-          "type": "path"
+          "template": "<#c3c9c8>\u2516[</>{{ .Path }}<#c3c9c8>]></>",
+          "foreground": "#B05A2B",
+          "type": "path",
+          "style": "plain"
         }
       ],
-      "type": "prompt"
+      "newline": true
     }
   ],
-  "final_space": true,
-  "version": 2
+  "version": 3,
+  "final_space": true
 }
