@@ -1,89 +1,110 @@
-// -*- mode: jsonc -*-
 {
-    "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 8, // Waybar height (to be removed for auto height)
-    "spacing": 4, // Gaps between modules (4px)
-    "reload_style_on_change": true,
-    "modules-left": [
-  	    "hyprland/workspaces"
-    ],
+  "position": "bottom",
+  "layer": "top",
+  "height": 20,
 
-    "modules-right": [
-        "group/rightwing"     
-	],
-    "group/rightwing":{
-        "type": "custom",
-        "orientation": "horizontal",
-        "modules": [
-            "network",
-            "temperature",
-            "memory",
-            "pulseaudio",
-            "battery",
-            "clock#clock2",
-            "clock"
-         ]
+  "modules-left": ["hyprland/window"],
+  "modules-center": ["hyprland/workspaces"],
+  "modules-right": [
+    "disk",
+    "memory",
+    "cpu",
+    "network",
+    "tray",
+    "pulseaudio",
+    "battery",
+    "clock"
+  ],
+
+  "clock": {
+    "interval": 1,
+    "format": " {:%B %d  %H:%M}",
+    "format-alt": " {:%H:%M}",
+    "on-click-middle": "gnome-calendar",
+    "tooltip-format": "\n<span size='14pt' font='JetBrains Mono ExtraBold'>{calendar}</span>",
+    "calendar": {
+      "mode": "month",
+      "mode-mon-col": 3,
+      "on-scroll": 1,
+      "on-click-right": "mode",
+      "format": {
+        "months": "<span color='#5e81ac'><b>{}</b></span>",
+        "days": "<span color='#88c0d0'><b>{}</b></span>",
+        "weekdays": "<span color='#d08770'><b>{}</b></span>",
+        "today": "<span color='#bf616a'><b><u>{}</u></b></span>"
+      }
+    }
+  },
+  "hyprland/workspaces": {
+    "active-only": false,
+    "all-outputs": true,
+    "disable-scroll": false,
+    "on-scroll-up": "hyprctl dispatch workspace e-1",
+    "on-scroll-down": "hyprctl dispatch workspace e+1",
+    "format": "{icon}",
+    "on-click": "activate",
+    "format-icons": {
+      "urgent": "",
+      "active": "",
+      "default": ""
     },
-    // Modules configuration
-    "hyprland/workspaces": {
-        "format": "{name}",
-        "on-click": "activate",
-        "sort-by-number": true
+    "sort-by-number": true
+  },
+
+  "pulseaudio": {
+    "format": "<span size='12000'>{icon}</span> {volume}%",
+    "format-muted": "<span size='12000' foreground='#a95551'></span> {volume}%",
+    "format-icons": {
+      "default": ["", ""]
     },
-    "spacer": {
-        "format":"{testing}"
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-click-right": "pavucontrol"
+  },
+
+  "tray": {
+    "icon-size": 20,
+    "spacing": 0
+  },
+
+  "memory": {
+    "format": " {}%",
+    "format-alt": " {used}/{total} GiB",
+    "interval": 5
+  },
+  "cpu": {
+    "format": "󰻠 {usage}%",
+    "format-alt": "󰻠 {avg_frequency} GHz",
+    "interval": 5
+  },
+  "disk": {
+    "format": "󰋊 {}%",
+    "format-alt": "󰋊 {used}/{total} GiB",
+    "interval": 20,
+    "path": "/"
+  },
+  "network": {
+    // "interface": "wlp2*", // (Optional) To force the use of this interface
+    "format-wifi": "{essid} ({signalStrength}%)",
+    "format-ethernet": "{ipaddr}/{cidr} ",
+    "tooltip-format": "{ifname} via {gwaddr} ",
+    "format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "Disconnected",
+    "format-alt": "{ifname}: {ipaddr}/{cidr}",
+    "on-click-middle": "nm-applet --no-agent"
+  },
+  "battery": {
+    "states": {
+      // "good": 95,
+      "warning": 30,
+      "critical": 15
     },
-    "clock": {
-        // "timezone": "America/New_York",
-        "interval": 1,
-        "tooltip": false,
-        "format": "{:%I:%M:%S %p}",
-        "on-click": "gsimplecal -t"
-    },
-    "clock#clock2": {
-        // "timezone": "America/New_York",
-        "interval": 1,
-        "tooltip": false,
-        "format": "{:%A %d/%m/%Y}",//"{%A %d/%m/%Y}",
-        "on-click": "gsimplecal -t"
-    },
-    "memory": {
-        "interval": 1,
-        "tooltip": false,
-        "on-click-right": "htop",
-        "format": "RAM {}%"
-    },
-    "temperature": {
-        "interval": 1,
-        "tooltip": false,
-        "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
-        "format": "CPU {temperatureC}°C"
-    },
-    "network": {
-        "interface": "wlp0s20f3", // (Optional) To force the use of this interface
-        "interval": 1,
-        "tooltip": false,
-        "on-click": "/home/pouls0n/.config/waybar/fuzzel-wifi.sh",
-        "format": "{essid} • {signalStrength}%",
-        "format-disconnected": "OFFLINE"
-    },
-    "pulseaudio": {
-        "scroll-step": 5, // %, can be a float 
-        "format": "{volume}%",
-        "format-muted": "m{volume}%",
-        "tooltip": true,
-        "icon-size": 12,
-        "on-click": "pavucontrol"
-    },
-    "battery": {
-        "states": {
-        "good": 95,
-        "warning": 30,
-        "critical": 20
-        },
-        "format-charging": "↑{capacity}%",
-        "format-plugged": "↑{capacity}%",
-        "format-discharging": "↓{capacity}%",
-        "tooltip": true
-    }   
+    "format": "{capacity}% {icon}",
+    "format-full": "{capacity}% {icon}",
+    "format-charging": "{capacity}% ",
+    "format-plugged": "{capacity}% ",
+    "format-alt": "{time} {icon}",
+    // "format-good": "", // An empty format will hide the module
+    // "format-full": "",
+    "format-icons": ["", "", "", "", ""]
+  }
 }
